@@ -1,1 +1,111 @@
-wef
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rural Sky Lounge Menu</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .active-tab {
+        @apply border-b-2 border-lilac text-lilac;
+      }
+      :root {
+        --lilac: #c8a2c8;
+      }
+      .border-lilac {
+        border-color: var(--lilac);
+      }
+      .text-lilac {
+        color: var(--lilac);
+      }
+      .bg-lilac {
+        background-color: var(--lilac);
+      }
+    </style>
+  </head>
+  <body class="bg-black text-white font-sans">
+    <!-- Hero Section -->
+    <section class="text-center py-12">
+      <img
+        src="logo.jpg"
+        alt="Rural Sky Lounge Logo"
+        class="mx-auto w-40 mb-4"
+      />
+      <h1 class="text-4xl font-bold text-lilac">Rural Sky Lounge</h1>
+      <p class="text-gray-400">Sip. Chill. Repeat.</p>
+    </section>
+
+    <!-- Category Toggle -->
+    <div class="flex justify-center space-x-6 border-b border-gray-700 pb-4">
+      <button class="tab-button active-tab" data-category="Drinks">
+        Drinks
+      </button>
+      <button class="tab-button" data-category="Shots">Shots</button>
+      <button class="tab-button" data-category="Bottles">Bottles</button>
+    </div>
+
+    <!-- Menu Items Grid -->
+    <section
+      id="menu"
+      class="grid grid-cols-1 md:grid-cols-3 gap-6 p-6 max-w-6xl mx-auto"
+    ></section>
+
+    <script>
+      const menuItems = [
+        {
+          category: "Drinks",
+          name: "Lilac Martini",
+          description: "Vodka, lilac syrup, lemon twist.",
+          price: "$12",
+          image: "https://via.placeholder.com/300x300?text=Lilac+Martini",
+        },
+        {
+          category: "Shots",
+          name: "Purple Haze",
+          description: "Vodka, chambord, lime.",
+          price: "$5",
+          image: "https://via.placeholder.com/300x300?text=Purple+Haze",
+        },
+        {
+          category: "Bottles",
+          name: "Sky Lounge Reserve Rum",
+          description: "House special aged rum.",
+          price: "$80",
+          image: "https://via.placeholder.com/300x300?text=Reserve+Rum",
+        },
+      ];
+
+      const menuContainer = document.getElementById("menu");
+      const buttons = document.querySelectorAll(".tab-button");
+
+      function renderMenu(category) {
+        menuContainer.innerHTML = "";
+        const filtered = menuItems.filter((item) => item.category === category);
+        filtered.forEach((item) => {
+          const card = `
+          <div class="bg-gray-900 rounded-2xl shadow-lg overflow-hidden text-center">
+            <img src="${item.image}" alt="${item.name}" class="w-full h-64 object-cover">
+            <div class="p-4">
+              <h3 class="text-xl font-semibold text-lilac mt-2">${item.name}</h3>
+              <p class="text-sm text-gray-400 my-1">${item.description}</p>
+              <span class="text-white font-bold">${item.price}</span>
+            </div>
+          </div>
+        `;
+          menuContainer.insertAdjacentHTML("beforeend", card);
+        });
+      }
+
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          buttons.forEach((b) => b.classList.remove("active-tab"));
+          btn.classList.add("active-tab");
+          renderMenu(btn.dataset.category);
+        });
+      });
+
+      // Initial load
+      renderMenu("Drinks");
+    </script>
+  </body>
+</html>
