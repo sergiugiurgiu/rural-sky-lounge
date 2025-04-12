@@ -7,31 +7,35 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
       .active-tab {
-        @apply border-b-2 border-lilac text-lilac;
+        @apply border-b-2 border-custom-lilac text-custom-lilac;
       }
       :root {
-        --lilac: #c8a2c8;
+        --custom-lilac: #c8a2c8;
+        --background-color: #181818; /* Dark background to match the logo */
       }
-      .border-lilac {
-        border-color: var(--lilac);
+      body {
+        background-color: var(--background-color);
       }
-      .text-lilac {
-        color: var(--lilac);
+      .border-custom-lilac {
+        border-color: var(--custom-lilac);
       }
-      .bg-lilac {
-        background-color: var(--lilac);
+      .text-custom-lilac {
+        color: var(--custom-lilac);
+      }
+      .bg-custom-lilac {
+        background-color: var(--custom-lilac);
       }
     </style>
   </head>
-  <body class="bg-black text-white font-sans">
+  <body class="text-white font-sans">
     <!-- Hero Section -->
     <section class="text-center py-12">
       <img
-        src="logo.jpg"
+        src="/mnt/data/WhatsApp Image 2025-03-20 at 11.22.55.jpeg"
         alt="Rural Sky Lounge Logo"
         class="mx-auto w-40 mb-4"
       />
-      <h1 class="text-4xl font-bold text-lilac">Rural Sky Lounge</h1>
+      <h1 class="text-4xl font-bold text-custom-lilac">Rural Sky Lounge</h1>
       <p class="text-gray-400">Sip. Chill. Repeat.</p>
     </section>
 
@@ -86,7 +90,7 @@
           <div class="bg-gray-900 rounded-2xl shadow-lg overflow-hidden text-center">
             <img src="${item.image}" alt="${item.name}" class="w-full h-64 object-cover">
             <div class="p-4">
-              <h3 class="text-xl font-semibold text-lilac mt-2">${item.name}</h3>
+              <h3 class="text-xl font-semibold text-custom-lilac mt-2">${item.name}</h3>
               <p class="text-sm text-gray-400 my-1">${item.description}</p>
               <span class="text-white font-bold">${item.price}</span>
             </div>
